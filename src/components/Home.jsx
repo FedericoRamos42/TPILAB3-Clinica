@@ -1,9 +1,12 @@
 import React from 'react'
+import imgHome from '../assets/portada-home.webp'
+
+
 
 const Home = () => {
   return (
     <div>
-      hola
+      <img src={imgHome} alt="imagenHome" />
     </div>
   )
 }

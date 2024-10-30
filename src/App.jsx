@@ -1,10 +1,11 @@
 import { useState } from 'react'
-import Login from './components/Auth/Login';
+import Login from './components/auth/Login';
 import Home from './components/Home';
-import Register from './components/auth/Register';
+  
 //Importar home, protected 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Register from './components/auth/Register';
+import  NavBar  from './components/Navbar';
+//import Register from './components/auth/Register';
 
 
 
@@ -29,7 +30,10 @@ function App() {
     ]);
   
     return (
+      <>
+      <NavBar/>
       <RouterProvider router={router}/>
+      </>
     );
   }
 
