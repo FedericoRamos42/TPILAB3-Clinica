@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import Login from './components/auth/Login';
 import Home from './components/Home';
+import TableGeneric from './components/TableGeneric'
+import EditProfile from './components/EditProfile'
   
 //Importar home, protected 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -20,6 +22,9 @@ function App() {
     const router = createBrowserRouter([
       { path: "/", element: <Home/> },
       { path: "/login", element: <Login onLogin={loginHandler}/>},
+      { path: "/Turnos", element: <TableGeneric/>},
+      { path: "/Profile", element: <EditProfile/>},
+
       // { path: "/register", element: <Register/>},
       /*{ path: "/comments", element: (
         <Protected isSignedIn={isLogged}>
