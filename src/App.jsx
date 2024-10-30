@@ -7,6 +7,7 @@ import EditProfile from './components/EditProfile'
 //Importar home, protected 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import  NavBar  from './components/Navbar';
+import PagePatient from './components/pages/pagePatient';
 //import Register from './components/auth/Register';
 
 
@@ -24,7 +25,7 @@ function App() {
       { path: "/login", element: <Login onLogin={loginHandler}/>},
       { path: "/Turnos", element: <TableGeneric/>},
       { path: "/Profile", element: <EditProfile/>},
-
+      { path: "/PagePatient", element: <PagePatient/>},
       // { path: "/register", element: <Register/>},
       /*{ path: "/comments", element: (
         <Protected isSignedIn={isLogged}>
