@@ -6,10 +6,10 @@ import { format } from "date-fns"
 import ButtonStatus from './ButtonStatus';
 
 
-function AdminTable({ headerProps, appointmentProps, action }) {
+function TableGeneric({ headerProps, appointmentProps, action }) {
 
     const user = JSON.parse(localStorage.getItem("clinica-token")); // Assuming it’s a JSON string
-    console.log(user.token)
+    console.log(user)
 
     return (
         <MDBTable align="middle" className="shadow-md rounded-lg">
@@ -25,15 +25,25 @@ function AdminTable({ headerProps, appointmentProps, action }) {
 
                     return (
                         <tr key={index} className="border-b hover:bg-gray-50">
-                            <td className="px-6 py-4">{appointment.doctorName}</td>
-                            <td className="px-6 py-4">{appointment.doctorSpecialty}</td>
+
+                            {user.role === "Doctor" ? (
+                                <>
+                                <td className="px-6 py-4">{appointment.patientName}</td>
+                                </>
+                            ) : (
+                                <>
+                                <td className="px-6 py-4">{appointment.doctorName}</td>
+                                <td className="px-6 py-4">{appointment.doctorSpecialty}</td>
+                            </>
+                            )}
+
                             <td className="px-6 py-4">{format(new Date(appointment.date), "dd/MM/yyyy")}</td>
                             <td className="px-6 py-4">{appointment.time}</td>
                             <td className="px-6 py-4"><ButtonStatus status={appointment.status} /></td>
                             <td>
                                 <MDBBtn
                                     onClick={() => {
-                                        console.log("Button clicked, calling action with:",appointment.idAppointment, appointment.patientId || user.id);
+                                        console.log("Button clicked, calling action with:", appointment.idAppointment, appointment.patientId || user.id);
                                         action(appointment.idAppointment, appointment.patientId || user.id);
                                     }}
                                 >
@@ -44,8 +54,8 @@ function AdminTable({ headerProps, appointmentProps, action }) {
                     );
                 })}
             </MDBTableBody>
-        </MDBTable>
+        </MDBTable >
     );
 }
 
-export default AdminTable;
+export default TableGeneric;
