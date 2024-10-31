@@ -8,23 +8,56 @@ const PagePatient = () => {
     const [appointments, setAppointments] = useState([]);
     const [reserved,setReserved] = useState([]);
   
-    useEffect(() => {
-      const fetchAppointments = async () => {
-        try {
-          const response = await fetch('http://localhost:5190/api/Appointment');
+
+    const handleAssignAppointment = async (idAppointment,idPatient) => {
+
+      const user = JSON.parse(localStorage.getItem("clinica-token"));
+
+      try {
+          const response = await fetch(`http://localhost:5190/api/Appointment/AssignAppointment`, {
+              method: 'PUT',
+              headers: {
+                  'Authorization': `Bearer ${user.token}`,
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ idAppointment, idPatient}),
+          });
+
           console.log(response)
+
           if (!response.ok) {
-            throw new Error("Error fetching appointments");
+              throw new Error(`HTTP error! Status: ${response.status}`);
           }
+
           const data = await response.json();
-          console.log(data);
-          setAppointments(data);
-        } catch (error) {
-          console.error("Error fetching appointments:", error);
+          console.log('Esta es la respuesta del fetch',data);
+      } catch (error) {
+          console.error("Error solicitando el turno:", error);
+      }
+  };
+  const handleCancelAppointment = async (idAppointment) => {
+    console.log(idAppointment)
+    try {
+        const response = await fetch(`http://localhost:5190/api/Appointment/Cancel/${idAppointment}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ idAppointment }),
+        });
+
+        console.log(response)
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
         }
-      };
-      fetchAppointments();
-    }, []);
+
+        const data = await response.json();
+        console.log('Esta es la respuesta del fetch',data);
+    } catch (error) {
+        console.error("Error solicitando el turno:", error);
+    }
+};
 
     useEffect(() => {
       const fetchAppointments = async () => {
@@ -70,8 +103,8 @@ const PagePatient = () => {
 
     return (
       <div>
-        <TableGeneric headerProps={PatientHeader} appointmentProps={appointments} />
-        <TableGeneric headerProps={PatientHeader} appointmentProps={reserved}/>
+        <TableGeneric headerProps={PatientHeader} appointmentProps={appointments} action={handleAssignAppointment}/>
+        <TableGeneric headerProps={PatientHeader} appointmentProps={reserved} action={handleCancelAppointment}/>
 
       </div>
     );
