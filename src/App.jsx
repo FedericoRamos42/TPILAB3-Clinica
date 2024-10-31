@@ -2,14 +2,12 @@ import { useState } from 'react'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from './components/auth/Login';
 import Home from './components/Home';
-import TableGeneric from './components/TableGeneric'
+import AdminTable from './components/TableGeneric'
 import EditProfile from './components/EditProfile'
-import NavBar from './components/Navbar';
-import PagePatient from './components/pages/pagePatient';
-import PageRegister from './components/pages/PageRegister';
-import PageAdmin from './components/pages/PageAdmin';
-
-
+import  NavBar  from './components/Navbar';
+import PageRegister from './pages/PageRegister';
+import PageAdmin from './pages/PageAdmin';
+import PagePatient from './pages/PagePatient';
 
 function App() {
 
@@ -22,7 +20,7 @@ function App() {
   const router = createBrowserRouter([
     { path: "/", element: <Home /> },
     { path: "/login", element: <Login onLogin={loginHandler} /> },
-    { path: "/Turnos", element: <TableGeneric /> },
+    { path: "/Turnos", element: <AdminTable /> },
     { path: "/Profile", element: <EditProfile /> },
     { path: "/patient", element: <PagePatient /> },
     { path: "/register", element: <PageRegister /> },

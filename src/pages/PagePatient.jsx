@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import TableGeneric from '../TableGeneric';
-import { PatientHeader } from '../../data/PatientHeader';
+import { PatientHeader } from '../data/PatientHeader';
+import AdminTable from '../components/TableGeneric';
+import EditProfile from '../components/EditProfile';
 const PagePatient = () => {
   
   const user = JSON.parse(localStorage.getItem("clinica-token"));
@@ -105,7 +106,7 @@ const PagePatient = () => {
       <div>
         <TableGeneric headerProps={PatientHeader} appointmentProps={appointments} action={handleAssignAppointment}/>
         <TableGeneric headerProps={PatientHeader} appointmentProps={reserved} action={handleCancelAppointment}/>
-
+        <EditProfile/>
       </div>
     );
   };

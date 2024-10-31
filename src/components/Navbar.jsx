@@ -6,17 +6,7 @@ import Navbar from 'react-bootstrap/Navbar';
 // FATLA AGREGAR NAVEGACION A LAS DISTINTAS SECCIONES
 
 const NavBar = () => {
-    const [userLocal, setUserLocal] = useState(null);
-
-    useEffect(() => {
-        const getUser = () => {
-            const user = JSON.parse(localStorage.getItem('clinica-token')) || null;
-            setUserLocal(user);
-        }
-
-        getUser();
-    }, [/* userLocal */]);
-    
+    const [userLocal, setUserLocal] = useState(() => JSON.parse(localStorage.getItem('clinica-token')));
     
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
@@ -27,11 +17,12 @@ const NavBar = () => {
                     <Nav className="ms-auto">
                         <Nav.Link href="#home">Inicio</Nav.Link>
                         <Nav.Link href="#link">Solicitar turno</Nav.Link>
-{/*                         {user ? (
+                        <Nav.Link href="#link">Contacto</Nav.Link>
+                        {userLocal ? (
                             <Nav.Link>{userLocal.name} {userLocal.lastName}</Nav.Link>
                         ) : (
                             <Nav.Link className='text-white bg-blue-700 rounded-md shadow-sm'>Ingresar</Nav.Link>
-                        )} */}
+                        )}
                     </Nav>
                 </Navbar.Collapse>
             </Container>

@@ -9,9 +9,8 @@ const EditProfile = () => {
     const obtenerDatosUser = async () => {
         const response = await fetch(`http://localhost:5190/api/${user.role}/${user.id}`);
         const data = await response.json();
-        console.log(data)
-        return data
-    }
+        return data;
+    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -83,7 +82,7 @@ const EditProfile = () => {
                                     <MDBCardText>Fecha de nacimiento</MDBCardText>
                                 </MDBCol>
                                 <MDBCol sm="8">
-                                    <MDBCardText className="text-muted">{userData.dateOfBirth}</MDBCardText>
+                                    <MDBCardText className="text-muted">{userData?.dateOfBirth}</MDBCardText>
                                 </MDBCol>
                             </MDBRow>
                             <hr />
