@@ -103,7 +103,7 @@ const PagePatient = () => {
     }, []);
 
     return (
-      <div>
+      <div className='w-full'>
         <TableGeneric headerProps={PatientHeader} appointmentProps={appointments} action={handleAssignAppointment}/>
         <TableGeneric headerProps={PatientHeader} appointmentProps={reserved} action={handleCancelAppointment}/>
         <EditProfile/>

@@ -1,14 +1,28 @@
-import { MDBCard, MDBCardBody, MDBCardText, MDBCardImage, MDBBtn, MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit';
+import {
+    MDBCard, MDBCardBody, MDBCardText, MDBCardImage, MDBBtn, MDBContainer, MDBRow, MDBCol,
+    MDBModal,
+    MDBModalDialog,
+    MDBModalContent,
+    MDBModalHeader,
+    MDBModalTitle,
+    MDBModalBody,
+    MDBModalFooter,
+    MDBInput,
+} from 'mdb-react-ui-kit';
 import React, { useEffect, useState } from 'react';
+import FormEditProfile from './FormEditProfile';
+import imgProfileDefault from '../assets/profile-default.jpg';
 
 const EditProfile = () => {
     const [userData, setUserData] = useState(null);
+    const [openEdit, setOpenEdit] = useState(false);
 
     const user = JSON.parse(localStorage.getItem('clinica-token'));
 
     const obtenerDatosUser = async () => {
         const response = await fetch(`http://localhost:5190/api/${user.role}/${user.id}`);
         const data = await response.json();
+        console.log(data)
         return data;
     };
 
@@ -24,31 +38,30 @@ const EditProfile = () => {
     }, []);
 
     return (
-        <MDBContainer className="py-5">
+        <MDBContainer className="py-2">
             <MDBCol>
-                <MDBCol md="4">
-                    <MDBCard className="mb-4 text-center">
+                <MDBCol className='max-w-[400px]'>
+                    <MDBCard className="mb-4 text-center border flex items-center">
                         <MDBCardBody>
-                            {/*                             <MDBCardImage
-                                src={userData.avatar}
-                                alt="Admin Avatar"
+                            <MDBCardImage
+                                src={imgProfileDefault}
+                                alt="User Avatar"
                                 className="rounded-circle"
                                 style={{ width: '150px' }}
                                 fluid
-                            /> */}
-                            <MDBCardText className="mt-4">
-                                <strong>{userData?.name}</strong>
+                            />
+                            <MDBCardText className="mt-4 font-semibold text-xl">
+                                {userData?.name} {userData?.lastName}
                             </MDBCardText>
-                            {/*                             <MDBCardText className="text-muted">
-                                Registro: {userData.registration_date}
-                            </MDBCardText> */}
-                            <MDBBtn color="primary">Editar</MDBBtn>
+                            <MDBBtn color="primary" onClick={() => setOpenEdit(true)}>Editar perfil</MDBBtn>
                         </MDBCardBody>
                     </MDBCard>
                 </MDBCol>
 
-                <MDBCol md="8">
-                    <MDBCard className="mb-4">
+                <FormEditProfile open={openEdit} setOpen={setOpenEdit} userEdit={userData}/>
+
+                <MDBCol className='max-w-[400px] '>
+                    <MDBCard className="mb-4 border">
                         <MDBCardBody>
                             <MDBRow>
                                 <MDBCol sm="4">
@@ -56,6 +69,15 @@ const EditProfile = () => {
                                 </MDBCol>
                                 <MDBCol sm="8">
                                     <MDBCardText className="text-muted">{userData?.name}</MDBCardText>
+                                </MDBCol>
+                            </MDBRow>
+                            <hr />
+                            <MDBRow>
+                                <MDBCol sm="4">
+                                    <MDBCardText>Apellido</MDBCardText>
+                                </MDBCol>
+                                <MDBCol sm="8">
+                                    <MDBCardText className="text-muted">{userData?.lastName}</MDBCardText>
                                 </MDBCol>
                             </MDBRow>
                             <hr />
@@ -70,7 +92,7 @@ const EditProfile = () => {
                             <hr />
                             <MDBRow>
                                 <MDBCol sm="4">
-                                    <MDBCardText>Phone</MDBCardText>
+                                    <MDBCardText>Telefono</MDBCardText>
                                 </MDBCol>
                                 <MDBCol sm="8">
                                     <MDBCardText className="text-muted">{userData?.phoneNumber}</MDBCardText>
@@ -82,27 +104,49 @@ const EditProfile = () => {
                                     <MDBCardText>Fecha de nacimiento</MDBCardText>
                                 </MDBCol>
                                 <MDBCol sm="8">
-                                    <MDBCardText className="text-muted">{userData?.dateOfBirth}</MDBCardText>
+                                    <MDBCardText className="text-muted">{new Date(userData?.dateOfBirth).toLocaleDateString('es-ES')}</MDBCardText>
                                 </MDBCol>
                             </MDBRow>
                             <hr />
-                            <MDBRow>
-                                <MDBCol sm="4">
-                                    <MDBCardText>Código postal</MDBCardText>
-                                </MDBCol>
-                                <MDBCol sm="8">
-                                    {/* <MDBCardText className="text-muted">{userData.address.postalCode}</MDBCardText> */}
-                                </MDBCol>
-                            </MDBRow>
-                            <hr />
-                            <MDBRow>
-                                <MDBCol sm="4">
-                                    <MDBCardText>DNI</MDBCardText>
-                                </MDBCol>
-                                {/*                                 <MDBCol sm="8">
-                                    <MDBCardText className="text-muted">{userData.dni}</MDBCardText>
-                                </MDBCol> */}
-                            </MDBRow>
+                            {userData && userData?.role === 'Patient' && (
+                                <div>
+                                    <MDBRow>
+                                        <MDBCol sm="4">
+                                            <MDBCardText>Calle</MDBCardText>
+                                        </MDBCol>
+                                        <MDBCol sm="8">
+                                            <MDBCardText className="text-muted">{userData?.addressDto?.street}</MDBCardText>
+                                        </MDBCol>
+                                    </MDBRow>
+                                    <hr />
+                                    <MDBRow>
+                                        <MDBCol sm="4">
+                                            <MDBCardText>Ciudad</MDBCardText>
+                                        </MDBCol>
+                                        <MDBCol sm="8">
+                                            <MDBCardText className="text-muted">{userData?.addressDto?.city}</MDBCardText>
+                                        </MDBCol>
+                                    </MDBRow>
+                                    <hr />
+                                    <MDBRow>
+                                        <MDBCol sm="4">
+                                            <MDBCardText>Provincia</MDBCardText>
+                                        </MDBCol>
+                                        <MDBCol sm="8">
+                                            <MDBCardText className="text-muted">{userData?.addressDto?.province}</MDBCardText>
+                                        </MDBCol>
+                                    </MDBRow>
+                                    <hr />
+                                    <MDBRow>
+                                        <MDBCol sm="4">
+                                            <MDBCardText>Codigo postal</MDBCardText>
+                                        </MDBCol>
+                                        <MDBCol sm="8">
+                                            <MDBCardText className="text-muted">{userData?.addressDto?.postalCode}</MDBCardText>
+                                        </MDBCol>
+                                    </MDBRow>
+                                </div>
+                            )}
                         </MDBCardBody>
                     </MDBCard>
                 </MDBCol>
