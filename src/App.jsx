@@ -5,7 +5,7 @@ import TableGeneric from './components/TableGeneric'
 import EditProfile from './components/EditProfile'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import  NavBar  from './components/Navbar';
-import PagePatient from './components/pages/pagePatient';
+import PagePatient from './components/pages/PagePatient';
 import Register from './views/Register';
 
 
