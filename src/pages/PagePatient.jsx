@@ -104,8 +104,8 @@ const PagePatient = () => {
 
     return (
       <div>
-        <TableGeneric headerProps={PatientHeader} appointmentProps={appointments} action={handleAssignAppointment}/>
-        <TableGeneric headerProps={PatientHeader} appointmentProps={reserved} action={handleCancelAppointment}/>
+        <TableGeneric headerProps={PatientHeader} appointmentProps={appointments} action={handleAssignAppointment} labelButton={"Asignar"}/>
+        <TableGeneric headerProps={PatientHeader} appointmentProps={reserved} action={handleCancelAppointment} labelButton={"Cancelar"}/>
         <EditProfile/>
       </div>
     );

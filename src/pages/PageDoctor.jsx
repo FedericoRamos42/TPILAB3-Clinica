@@ -10,7 +10,6 @@ const PageDoctor = () => {
     const [appointments, setAppointments] = useState([]);
 
     const handleCancelAppointment = async (idAppointment) => {
-        const user = JSON.parse(localStorage.getItem("clinica-token"));
         console.log(idAppointment)
         try {
             const response = await fetch(`http://localhost:5190/api/Appointment/Cancel/${idAppointment}`, {
@@ -65,7 +64,7 @@ const PageDoctor = () => {
 
     return (
         <>
-            <TableGeneric headerProps={DoctorHeader} appointmentProps={appointments} action={handleCancelAppointment} />
+            <TableGeneric headerProps={DoctorHeader} appointmentProps={appointments} action={handleCancelAppointment} labelButton={"Cancelar"} />
             <EditProfile />
         </>
     )

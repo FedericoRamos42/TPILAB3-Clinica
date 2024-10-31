@@ -6,7 +6,7 @@ import { format } from "date-fns"
 import ButtonStatus from './ButtonStatus';
 
 
-function TableGeneric({ headerProps, appointmentProps, action }) {
+function TableGeneric({ headerProps, appointmentProps, action, labelButton }) {
 
     const user = JSON.parse(localStorage.getItem("clinica-token")); // Assuming it’s a JSON string
     console.log(user)
@@ -47,7 +47,7 @@ function TableGeneric({ headerProps, appointmentProps, action }) {
                                         action(appointment.idAppointment, appointment.patientId || user.id);
                                     }}
                                 >
-                                    Asignar {/* Cambia este texto según lo que necesites */}
+                                    {labelButton} 
                                 </MDBBtn>
                             </td>
                         </tr>
