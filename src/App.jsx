@@ -3,11 +3,11 @@ import Login from './components/auth/Login';
 import Home from './components/Home';
 import TableGeneric from './components/TableGeneric'
 import EditProfile from './components/EditProfile'
-  
-//Importar home, protected 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import  NavBar  from './components/Navbar';
+import PagePatient from './components/pages/pagePatient';
 import Register from './views/Register';
+
 
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
       { path: "/login", element: <Login onLogin={loginHandler}/>},
       { path: "/Turnos", element: <TableGeneric/>},
       { path: "/Profile", element: <EditProfile/>},
-
+      { path: "/patient", element: <PagePatient/>},
       { path: "/register", element: <Register/>},
       /*{ path: "/comments", element: (
         <Protected isSignedIn={isLogged}>

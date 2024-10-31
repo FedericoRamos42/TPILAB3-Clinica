@@ -45,12 +45,12 @@ const Login = ({ onLogin }) => {
 
         handleLogin(email, password);
         onLogin();
-        navigate("/home");
+        navigate("/");
     };
 
     const handleLogin = async (email, password) => {
         try {
-            const res = await fetch("https://localhost:5190/api/Authentication/AuthenticateUser", {
+            const res = await fetch("http://localhost:5190/api/Authentication/AuthenticateUser", {
                 method: "POST",
                 headers: {
                     "content-type": "application/json",
@@ -63,9 +63,10 @@ const Login = ({ onLogin }) => {
                 throw res;
             }
 
-            const data = await res;
-
-            localStorage.setItem("clinica-token", data);
+            const data = await res.json();
+            
+            localStorage.setItem("clinica-token", JSON.stringify(data));
+            console.log(data)
             setError(null);
             return true;
 
