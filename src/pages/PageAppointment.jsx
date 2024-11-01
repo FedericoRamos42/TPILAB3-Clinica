@@ -51,12 +51,11 @@ const PageAppointment = () => {
             try {
                 console.log("Selected Specialty:", selectedSpecialty);
                 
-                // Construir los parámetros de consulta (query parameters)
+             
                 const query = new URLSearchParams();
-                if (selectedSpecialty) query.append('idSpecialty', selectedSpecialty); // Cambiado a 'idSpecialty' si ese es el nombre en el backend
+                if (selectedSpecialty) query.append('idSpecialty', selectedSpecialty); 
                 if (selectedDate) query.append('date', selectedDate);
 
-                // Realizar la solicitud a la API con los parámetros de consulta
                 const response = await fetch(`http://localhost:5190/api/Appointment/Filtered?${query.toString()}`, {
                     method: 'GET',
                     headers: {
@@ -64,14 +63,13 @@ const PageAppointment = () => {
                     },
                 });
 
-                // Comprobar si la respuesta es válida
                 if (!response.ok) {
                     throw new Error("Error en el fetch");
                 }
 
-                // Analizar la respuesta JSON y actualizar el estado
+            
                 const appointments = await response.json();
-                setAppointmentLocal(appointments); // Actualizar el estado con las citas obtenidas
+                setAppointmentLocal(appointments); 
                 console.log("Appointments fetched:", appointments);
 
             } catch (error) {
@@ -79,9 +77,8 @@ const PageAppointment = () => {
             }
         };
 
-        fetchAppointments(); // Llamar a la función de fetch cuando cambien los parámetros
-
-    }, [selectedSpecialty, selectedDate]); // Ejecutar el efecto cuando cambien `selectedSpecialty` o `selectedDate`
+        fetchAppointments(); 
+    }, [selectedSpecialty, selectedDate]); 
 
 
     useEffect(() => {

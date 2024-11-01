@@ -1,15 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem } from 'mdb-react-ui-kit';
 
-export const ComboBoxGeneric = ({ label, options, onSelect }) => (
-    <div>
-        <label>{label}</label>
-        <select onChange={(e) => onSelect(e.target.value)} className="combo-box">
-            <option value="">All</option>
-            {options.map((option) => (
-                <option key={option.value} value={option.value}>
-                    {option.label}
-                </option>
-            ))}
-        </select>
-    </div>
-);
+export const ComboBoxGeneric = ({ label, options, onSelect }) => {
+    const [selectedOption, setSelectedOption] = useState(label);
+
+    const handleSelect = (value, label) => {
+        setSelectedOption(label);
+        onSelect(value);
+    };
+
+    return (
+        <MDBDropdown className='p-4'>
+            <MDBDropdownToggle color="primary">
+                {selectedOption}
+            </MDBDropdownToggle>
+            <MDBDropdownMenu>
+                {options.map((option) => (
+                    <MDBDropdownItem 
+                        key={option.value} 
+                        link 
+                        onClick={() => handleSelect(option.value, option.label)}
+                    >
+                        {option.label}
+                    </MDBDropdownItem>
+                ))}
+            </MDBDropdownMenu>
+        </MDBDropdown>
+    );
+};
