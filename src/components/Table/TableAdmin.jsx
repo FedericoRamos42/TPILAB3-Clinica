@@ -1,7 +1,6 @@
 import React from 'react'
 import { MDBTable, MDBTableHead, MDBTableBody, MDBBtn } from 'mdb-react-ui-kit';
-const TableAdmin = ({ headerProps, user }) => {
-
+const TableAdmin = ({ headerProps, userProps }) => {
 
   return (
     <MDBTable align="middle" className="shadow-md rounded-lg">
@@ -12,19 +11,23 @@ const TableAdmin = ({ headerProps, user }) => {
         </tr>
       </MDBTableHead>
       <MDBTableBody>
-        {appointmentProps.map((user, index) => {
+        {userProps.map((user, index) => {
           console.log("Inspecting user:", user);
 
           return (
             <tr key={index} className="border-b hover:bg-gray-50">
+              <td className="px-6 py-4">{user.id}</td>
               <td className="px-6 py-4">{user.name}</td>
               <td className="px-6 py-4">{user.lastName}</td>
-              <td className="px-6 py-4">{user.rol}</td>
+              <td className="px-6 py-4">{user.role}</td>
               <td className="px-6 py-4">{user.phoneNumber}</td>
               <td className="px-6 py-4">{user.email}</td>
               <td>
                 <MDBBtn
-                 >cancelar
+                >cancelar
+                </MDBBtn>
+                <MDBBtn 
+                >Editar
                 </MDBBtn>
               </td>
             </tr>

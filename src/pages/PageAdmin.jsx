@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import TableAdmin from '../components/Table/TableAdmin';
-
+import { AdminHeader } from '../data/AdminHeader';
 const PageAdmin = () => {
   const [users, setUsers] = useState([]);
 
@@ -24,7 +24,7 @@ const PageAdmin = () => {
 
 
   return (
-    <TableAdmin users={users}/>
+    <TableAdmin headerProps={AdminHeader} userProps={users}/>
   );
 };
 
