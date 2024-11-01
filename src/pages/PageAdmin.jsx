@@ -23,7 +23,7 @@ const PageAdmin = () => {
     };
     fetchAppointments();
   }, []);
-
+  
 
   return (
     <>

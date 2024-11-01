@@ -10,32 +10,7 @@ const PagePatient = () => {
   const [reserved, setReserved] = useState([]);
 
 
-  const handleAssignAppointment = async (idAppointment, idPatient) => {
 
-    const user = JSON.parse(localStorage.getItem("clinica-token"));
-
-    try {
-      const response = await fetch(`http://localhost:5190/api/Appointment/AssignAppointment`, {
-        method: 'PUT',
-        headers: {
-          'Authorization': `Bearer ${user.token}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ idAppointment, idPatient }),
-      });
-
-      // console.log(response)
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      // console.log('Esta es la respuesta del fetch', data);
-    } catch (error) {
-      // console.error("Error solicitando el turno:", error);
-    }
-  };
   const handleCancelAppointment = async (idAppointment) => {
     console.log(idAppointment)
     try {
@@ -60,12 +35,8 @@ const PagePatient = () => {
     }
   };
 
-  const actions = appointments.map((appointment) => [
-    {
-      icon: 'add',
-      color: 'primary',
-      onClick: () => handleAssignAppointment(appointment.idAppointment, user.id),
-    },
+
+  const reserve = reserved.map((appointment) => [
     {
       icon: 'ban',
       color: 'danger',
@@ -73,23 +44,7 @@ const PagePatient = () => {
     },
   ]);
 
-  useEffect(() => {
-    const fetchAppointments = async () => {
-      try {
-        const response = await fetch('http://localhost:5190/api/Appointment');
-        console.log(response)
-        if (!response.ok) {
-          throw new Error("Error fetching appointments");
-        }
-        const appointments = await response.json();
-        console.log(appointments);
-        setAppointments(appointments);
-      } catch (error) {
-        console.error("Error fetching appointments:", error);
-      }
-    };
-    fetchAppointments();
-  }, []);
+
 
   useEffect(() => {
     const fetchAppointments = async () => {
@@ -117,7 +72,7 @@ const PagePatient = () => {
 
   return (
     <div>
-      <TableGeneric data={appointments} headers={headerAppointmentAvailable} actions={actions} />
+      <TableGeneric data={reserved} headers={headerAppointmentAvailable} actions={reserve} />
       <EditProfile />
     </div>
   );

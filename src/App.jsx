@@ -9,6 +9,7 @@ import PageRegister from './pages/PageRegister';
 import PageAdmin from './pages/PageAdmin';
 import PagePatient from './pages/PagePatient';
 import PageDoctor from './pages/PageDoctor';
+import PageAppointment from './pages/PageAppointment';
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
     { path: "/patient", element: <PagePatient /> },
     { path: "/doctor", element: <PageDoctor /> },
     { path: "/register", element: <PageRegister /> },
+    { path: "/appointment", element: <PageAppointment /> },
     { path: "/admin", element: <PageAdmin /> },
     /*{ path: "/comments", element: (
       <Protected isSignedIn={isLogged}>
