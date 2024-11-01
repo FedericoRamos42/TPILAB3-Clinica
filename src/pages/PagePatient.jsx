@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { PatientHeader } from '../data/PatientHeader';
-import AdminTable from '../components/TableGeneric';
+import TableGeneric from '../components/TableGeneric';
 import EditProfile from '../components/EditProfile';
 const PagePatient = () => {
   
@@ -103,9 +103,9 @@ const PagePatient = () => {
     }, []);
 
     return (
-      <div className='w-full'>
-        <TableGeneric headerProps={PatientHeader} appointmentProps={appointments} action={handleAssignAppointment}/>
-        <TableGeneric headerProps={PatientHeader} appointmentProps={reserved} action={handleCancelAppointment}/>
+      <div>
+        <TableGeneric headerProps={PatientHeader} appointmentProps={appointments} action={handleAssignAppointment} labelButton={"Asignar"}/>
+        <TableGeneric headerProps={PatientHeader} appointmentProps={reserved} action={handleCancelAppointment} labelButton={"Cancelar"}/>
         <EditProfile/>
       </div>
     );

@@ -8,6 +8,7 @@ import  NavBar  from './components/Navbar';
 import PageRegister from './pages/PageRegister';
 import PageAdmin from './pages/PageAdmin';
 import PagePatient from './pages/PagePatient';
+import PageDoctor from './pages/PageDoctor'
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
     { path: "/Turnos", element: <AdminTable /> },
     { path: "/Profile", element: <EditProfile /> },
     { path: "/patient", element: <PagePatient /> },
+    { path: "/doctor", element: <PageDoctor /> },
     { path: "/register", element: <PageRegister /> },
     { path: "/admin", element: <PageAdmin /> },
     /*{ path: "/comments", element: (

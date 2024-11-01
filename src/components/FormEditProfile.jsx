@@ -30,7 +30,6 @@ const FormEditProfile = ({ open, setOpen, userEdit, token }) => {
     });
 
     useEffect(() => {
-        console.log('ejecuto useEffect')
         if (userEdit) {
             setFormData({
                 name: userEdit.name || '',

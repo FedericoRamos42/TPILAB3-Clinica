@@ -1,0 +1,1 @@
+export const AdminHeader = ["Nombre", "Apellido" ,"Rol","Telefono", "Email", "Acción"]
