@@ -7,6 +7,10 @@ export const headerAppointmentAvailable = [
 ];
 
 export const headerPatient = [
+    { key: 'patientName', label: 'Nombre' },
+    { key: 'date', label: 'Fecha' },
+    { key: 'time', label: 'Horario' },
+    { key: 'status', label: 'Estado' },
 ]
 
 export const headerDoctor = [

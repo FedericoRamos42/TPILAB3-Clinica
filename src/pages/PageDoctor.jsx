@@ -1,7 +1,7 @@
 
 import TableGeneric from '../components/Table/TableGeneric';
 import EditProfile from '../components/Form/FormEditProfile';
-import {  headerDoctor } from '../data/headerTable'
+import { headerPatient } from '../data/headerTable'
 import { useState, useEffect } from 'react';
 
 const PageDoctor = () => {
@@ -60,11 +60,17 @@ const PageDoctor = () => {
         fetchAppointments();
     }, []);
 
-
+    const canceled = appointments.map((appointment) => [
+        {
+          icon: 'ban',
+          color: 'danger',
+          onClick: () => handleCancelAppointment(appointment.id),
+        },
+      ]);
 
     return (
         <>
-            <TableGeneric headerProps={headerDoctor} appointmentProps={appointments} action={handleCancelAppointment} labelButton={"Cancelar"} />
+            <TableGeneric data={appointments} headers={headerPatient} actions={canceled} />
             <EditProfile />
         </>
     )

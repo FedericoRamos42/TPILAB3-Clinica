@@ -27,7 +27,6 @@ const PageAdmin = () => {
 
   return (
     <>
-      ejemplo para traer doctores
       <TableGeneric headers={headerDoctor} data={users} />
     </>
     // <TableAdmin headerProps={AdminHeader} userProps={users} />
