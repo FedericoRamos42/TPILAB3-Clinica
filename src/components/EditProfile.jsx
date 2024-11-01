@@ -58,7 +58,7 @@ const EditProfile = () => {
                     </MDBCard>
                 </MDBCol>
 
-                <FormEditProfile open={openEdit} setOpen={setOpenEdit} userEdit={userData}/>
+                <FormEditProfile open={openEdit} setOpen={setOpenEdit} userEdit={userData} token={user.token}/>
 
                 <MDBCol className='max-w-[400px] '>
                     <MDBCard className="mb-4 border">
@@ -115,7 +115,7 @@ const EditProfile = () => {
                                             <MDBCardText>Calle</MDBCardText>
                                         </MDBCol>
                                         <MDBCol sm="8">
-                                            <MDBCardText className="text-muted">{userData?.addressDto?.street}</MDBCardText>
+                                            <MDBCardText className="text-muted">{userData?.address?.street}</MDBCardText>
                                         </MDBCol>
                                     </MDBRow>
                                     <hr />
@@ -124,7 +124,7 @@ const EditProfile = () => {
                                             <MDBCardText>Ciudad</MDBCardText>
                                         </MDBCol>
                                         <MDBCol sm="8">
-                                            <MDBCardText className="text-muted">{userData?.addressDto?.city}</MDBCardText>
+                                            <MDBCardText className="text-muted">{userData?.address?.city}</MDBCardText>
                                         </MDBCol>
                                     </MDBRow>
                                     <hr />
@@ -133,7 +133,7 @@ const EditProfile = () => {
                                             <MDBCardText>Provincia</MDBCardText>
                                         </MDBCol>
                                         <MDBCol sm="8">
-                                            <MDBCardText className="text-muted">{userData?.addressDto?.province}</MDBCardText>
+                                            <MDBCardText className="text-muted">{userData?.address?.province}</MDBCardText>
                                         </MDBCol>
                                     </MDBRow>
                                     <hr />
@@ -142,7 +142,7 @@ const EditProfile = () => {
                                             <MDBCardText>Codigo postal</MDBCardText>
                                         </MDBCol>
                                         <MDBCol sm="8">
-                                            <MDBCardText className="text-muted">{userData?.addressDto?.postalCode}</MDBCardText>
+                                            <MDBCardText className="text-muted">{userData?.address?.postalCode}</MDBCardText>
                                         </MDBCol>
                                     </MDBRow>
                                 </div>
