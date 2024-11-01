@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from './components/Form/FormLogin';
 import Home from './components/Home'
-import AdminTable from './components/Table/TableAdmin'
 import EditProfile from './components/EditProfile'
 import  NavBar  from './components/Navbar';
 import PageRegister from './pages/PageRegister';
@@ -22,7 +21,6 @@ function App() {
   const router = createBrowserRouter([
     { path: "/", element: <Home /> },
     { path: "/login", element: <Login onLogin={loginHandler} /> },
-    { path: "/Turnos", element: <AdminTable /> },
     { path: "/Profile", element: <EditProfile /> },
     { path: "/patient", element: <PagePatient /> },
     { path: "/doctor", element: <PageDoctor /> },

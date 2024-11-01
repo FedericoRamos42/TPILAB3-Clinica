@@ -6,10 +6,7 @@ const PagePatient = () => {
 
   const user = JSON.parse(localStorage.getItem("clinica-token"));
 
-  const [appointments, setAppointments] = useState([]);
   const [reserved, setReserved] = useState([]);
-
-
 
   const handleCancelAppointment = async (idAppointment) => {
     console.log(idAppointment)
