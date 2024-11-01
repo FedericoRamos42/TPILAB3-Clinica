@@ -1,5 +1,5 @@
 import React from 'react';
-import FormRegister from '../components/auth/FormRegister';
+import FormRegister from '../components/Form/FormRegister';
 
 const PageRegister = () => {
   return (

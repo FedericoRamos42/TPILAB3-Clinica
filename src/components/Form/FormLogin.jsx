@@ -118,8 +118,8 @@ const FormLogin = ({ onLogin }) => {
     );
 };
 
-Login.propTypes = {
-    onLogin: PropTypes.func,
-}
+// Login.propTypes = {
+//     onLogin: PropTypes.func,
+// }
 
 export default FormLogin;

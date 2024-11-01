@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Login from './components/auth/Login';
-import Home from './components/Home';
-import AdminTable from './components/TableGeneric'
+import Login from './components/Form/FormLogin';
+import Home from './components/Home'
+import AdminTable from './components/Table/TableAdmin'
 import EditProfile from './components/EditProfile'
 import  NavBar  from './components/Navbar';
 import PageRegister from './pages/PageRegister';
 import PageAdmin from './pages/PageAdmin';
 import PagePatient from './pages/PagePatient';
-import PageDoctor from './pages/PageDoctor'
+import PageDoctor from './pages/PageDoctor';
 
 function App() {
 

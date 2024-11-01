@@ -1,7 +1,7 @@
-import '../data/DoctorHeader'
-import TableGeneric from '../components/TableGeneric';
-import EditProfile from '../components/EditProfile';
-import { DoctorHeader } from '../data/DoctorHeader';
+
+import TableGeneric from '../components/Table/TableGeneric';
+import EditProfile from '../components/Form/FormEditProfile';
+import {  headerDoctor } from '../data/headerTable'
 import { useState, useEffect } from 'react';
 
 const PageDoctor = () => {
@@ -64,7 +64,7 @@ const PageDoctor = () => {
 
     return (
         <>
-            <TableGeneric headerProps={DoctorHeader} appointmentProps={appointments} action={handleCancelAppointment} labelButton={"Cancelar"} />
+            <TableGeneric headerProps={headerDoctor} appointmentProps={appointments} action={handleCancelAppointment} labelButton={"Cancelar"} />
             <EditProfile />
         </>
     )
