@@ -3,7 +3,7 @@ import { Button, Card, Col, Form, FormGroup, Row } from "react-bootstrap";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 
-const Login = ({ onLogin }) => {
+const FormLogin = ({ onLogin }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState({
@@ -122,4 +122,4 @@ Login.propTypes = {
     onLogin: PropTypes.func,
 }
 
-export default Login;
+export default FormLogin;

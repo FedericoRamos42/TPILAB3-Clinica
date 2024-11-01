@@ -10,7 +10,7 @@ import {
     MDBInput,
 } from 'mdb-react-ui-kit';
 import React, { useEffect, useState } from 'react';
-import FormEditProfile from './FormEditProfile';
+import FormEditProfile from './Form/FormEditProfile';
 import imgProfileDefault from '../assets/profile-default.jpg';
 
 const EditProfile = () => {

@@ -1,1 +1,0 @@
-export const DoctorHeader = ["Paciente", "Fecha", "Hora", "Estado", "Accion"]
