@@ -48,11 +48,10 @@ const PageAdmin = () => {
 
 
   useEffect(() => {
-
     const fetchAdmins = async () => {
       const query = new URLSearchParams();
       if (stateFiltered) query.append('state', stateFiltered);
-
+  
       try {
         const response = await fetch(`http://localhost:5190/api/User/Filtered?${query.toString()}`, {
           method: 'GET',
@@ -60,22 +59,21 @@ const PageAdmin = () => {
             'Content-Type': 'application/json',
           },
         });
-
+  
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
-
+  
         const user = await response.json();
         setUsers(user); // Actualizamos con el usuario encontrado
         console.log("User fetched:", user);
-
+  
       } catch (error) {
         console.error("Error solicitando usuario:", error);
-        
       }
-      {
-      fetchAdmins();
-    }, [stateFiltered])
+    };
+    fetchAdmins();
+  }, [stateFiltered]); 
     
     
 
@@ -121,8 +119,8 @@ const PageAdmin = () => {
       <>
         <ComboBoxGeneric label="Estado"
           options={[{ value: '', label: 'Todos los Estados' },
-          { value: 'Active', label: 'Activo' },
-          { value: 'Inactive', label: 'Inactivo' },]}
+          { value: 'true', label: 'Activo' },
+          { value: 'false', label: 'Inactivo' },]}
           onSelect={setStateFiltered}
         />
 
@@ -130,5 +128,5 @@ const PageAdmin = () => {
       </>
 
     );
-
+  }
     export default PageAdmin;
