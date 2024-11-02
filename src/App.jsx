@@ -9,6 +9,7 @@ import PageAdmin from './pages/PageAdmin';
 import PagePatient from './pages/PagePatient';
 import PageDoctor from './pages/PageDoctor';
 import PageAppointment from './pages/PageAppointment';
+import ContactForm from './components/ContactForm';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
     { path: "/login", element: <Login onLogin={loginHandler} /> },
     { path: "/Profile", element: <EditProfile /> },
     { path: "/patient", element: <PagePatient /> },
+    { path: "/contact", element: <ContactForm /> },
     { path: "/doctor", element: <PageDoctor /> },
     { path: "/register", element: <PageRegister /> },
     { path: "/appointment", element: <PageAppointment /> },

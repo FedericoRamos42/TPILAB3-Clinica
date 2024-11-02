@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import emailjs from 'emailjs-com';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
+    from_name: '',
+    to_email: '',
     message: ''
   });
 
@@ -14,9 +15,20 @@ const ContactForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Formulario enviado:', formData);
-    alert('Tu mensaje ha sido enviado exitosamente');
-    setFormData({ name: '', email: '', message: '' });
+    const serviceID = 'default_service';
+    const templateID = 'template_rbye8qd';
+    const userID = 'Qj0OSfCppg3ITow-Z';
+
+    emailjs.send(serviceID, templateID, formData, userID)
+      .then((response) => {
+        console.log('Email enviado:', response.status, response.text);
+        alert('Tu mensaje ha sido enviado exitosamente');
+        setFormData({ from_name: '', to_email: '', message: '' });
+      })
+      .catch((error) => {
+        console.error('Error al enviar el email:', error);
+        alert('Hubo un problema al enviar tu mensaje. Intenta nuevamente.');
+      });
   };
 
   return (
@@ -25,9 +37,9 @@ const ContactForm = () => {
         Nombre:
         <input
           type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
+          name="from_name"
+          id="from_name"
+          value={formData.from_name} 
           required
           className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
@@ -37,8 +49,9 @@ const ContactForm = () => {
         Email:
         <input
           type="email"
-          name="email"
-          value={formData.email}
+          name="to_email"
+          id="to_email"
+          value={formData.to_email} 
           onChange={handleChange}
           required
           className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -49,6 +62,7 @@ const ContactForm = () => {
         Consulta:
         <textarea
           name="message"
+          id="message"
           value={formData.message}
           onChange={handleChange}
           required
