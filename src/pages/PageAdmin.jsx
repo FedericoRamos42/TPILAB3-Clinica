@@ -2,17 +2,20 @@ import React, { useState, useEffect } from 'react';
 import TableGeneric from '../components/Table/TableGeneric';
 import { headerAdmin } from '../data/headerTable';
 import { ComboBoxGeneric } from '../components/ComboBox';
+import { Form } from 'react-router-dom';
+import FormEditProfile from '../components/Form/FormEditProfile';
 
-// import TableAdmin from '../components/Table/TableAdmin';
-// import { AdminHeader } from '../data/AdminHeader';
 const PageAdmin = () => {
+  const token = JSON.parse(localStorage.getItem("clinica-token"));
   const [users, setUsers] = useState([]);
   const [stateFiltered, setStateFiltered] = useState(null);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [userToEdit, setUserToEdit] = useState(null);
 
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
-        const response = await fetch('http://localhost:5190/api/User/'); //poner mismo endpoint a para los get
+        const response = await fetch('http://localhost:5190/api/User/');
 
         if (!response.ok) {
           throw new Error("Error fetching Users");
@@ -26,25 +29,6 @@ const PageAdmin = () => {
     };
     fetchAppointments();
   }, []);
-
-
-  //     try {
-  //       const response = await fetch(`http://localhost:5190/api/User/${Id}`, {
-  //         method: 'GET',
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //         },
-
-  //       });
-  //       if (!response.ok) {
-  //         throw new Error(`HTTP error! Status: ${response.status}`);
-  //       }
-  //     } catch (error) {
-  //       console.error("Error solicicitando usuario:", error);
-  //     }
-  //   };
-  //   fetchAdmins();
-  // }, []);
 
 
   useEffect(() => {
@@ -65,7 +49,7 @@ const PageAdmin = () => {
         }
   
         const user = await response.json();
-        setUsers(user); // Actualizamos con el usuario encontrado
+        setUsers(user); 
         console.log("User fetched:", user);
   
       } catch (error) {
@@ -77,14 +61,13 @@ const PageAdmin = () => {
     
     
 
-    
-
+  
 
     const handleDeleteAppointment = async (id) => {
       console.log(id)
       try {
         const response = await fetch(`http://localhost:5190/api/User/Delete/${id}`, {
-          method: 'Delete',
+          method: 'DELETE',
           headers: {
             // 'Authorization': `Bearer ${user.token}`,
             'Content-Type': 'application/json',
@@ -100,12 +83,17 @@ const PageAdmin = () => {
       }
 
     };
+    const handleEditClick = (user) => {
+      setUserToEdit(user); 
+      setIsEditModalOpen(true); 
+    };
+  
 
     const actions = users.map((user) => [
       {
         icon: 'edit',
         color: 'primary',
-        onClick: () => handleEditAppointment(user.id),
+        onClick: () => handleEditClick(user), 
       },
       {
         icon: 'ban',
@@ -125,6 +113,14 @@ const PageAdmin = () => {
         />
 
         <TableGeneric headers={headerAdmin} data={users} actions={actions} />
+        {isEditModalOpen && (
+        <FormEditProfile
+          open={isEditModalOpen} 
+          setOpen={setIsEditModalOpen} 
+          userEdit={userToEdit} 
+          token={token.token} 
+        />
+      )}
       </>
 
     );

@@ -102,6 +102,7 @@ const FormEditProfile = ({ open, setOpen, userEdit, token }) => {
                                         value={formData.name}
                                         placeholder="Nombre"
                                         onChange={handleChange}
+                                        required
                                     />
                                 </MDBCol>
                                 <MDBCol md="6">
@@ -112,6 +113,7 @@ const FormEditProfile = ({ open, setOpen, userEdit, token }) => {
                                         value={formData.lastName}
                                         placeholder="Apellido"
                                         onChange={handleChange}
+                                        required
                                     />
                                 </MDBCol>
                             </MDBRow>
@@ -125,6 +127,7 @@ const FormEditProfile = ({ open, setOpen, userEdit, token }) => {
                                         value={formData.email}
                                         placeholder="Correo Electrónico"
                                         onChange={handleChange}
+                                        required
                                     />
                                 </MDBCol>
                             </MDBRow>
@@ -138,6 +141,7 @@ const FormEditProfile = ({ open, setOpen, userEdit, token }) => {
                                         value={formData.phoneNumber}
                                         placeholder="Número de Teléfono"
                                         onChange={handleChange}
+                                        required
                                     />
                                 </MDBCol>
                             </MDBRow>
@@ -168,6 +172,7 @@ const FormEditProfile = ({ open, setOpen, userEdit, token }) => {
                                                 value={formData.address.street}
                                                 placeholder="Calle"
                                                 onChange={handleChange}
+                                                required
                                             />
                                         </MDBCol>
                                         <MDBCol md="6">
@@ -178,6 +183,7 @@ const FormEditProfile = ({ open, setOpen, userEdit, token }) => {
                                                 value={formData.address.province}
                                                 placeholder="Provincia"
                                                 onChange={handleChange}
+                                                required
                                             />
                                         </MDBCol>
                                     </MDBRow>
@@ -191,6 +197,7 @@ const FormEditProfile = ({ open, setOpen, userEdit, token }) => {
                                                 value={formData.address.city}
                                                 placeholder="Ciudad"
                                                 onChange={handleChange}
+                                                required
                                             />
                                         </MDBCol>
                                         <MDBCol md="6">
@@ -201,6 +208,7 @@ const FormEditProfile = ({ open, setOpen, userEdit, token }) => {
                                                 value={formData.address.postalCode}
                                                 placeholder="Código Postal"
                                                 onChange={handleChange}
+                                                required
                                             />
                                         </MDBCol>
                                     </MDBRow>
